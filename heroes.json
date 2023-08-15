@@ -17,12 +17,6 @@
       "name": "Морской герой",
       "description": "Как аквамен, но не из DC",
       "element": "water"
-    },
-    {
-      "id": "beae1604-848f-43c9-9ba5-f648702bd005",
-      "name": "alex",
-      "description": "Шиноби з лысття",
-      "element": "earth"
     }
   ],
   "filters": [
