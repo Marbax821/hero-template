@@ -1,34 +1,28 @@
 {
   "heroes": [
     {
-      "id": 4,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
+      "id": 1,
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
     },
     {
-      "id": 5,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
-    },
-    {
-      "id": 6,
+      "id": 2,
       "name": "Неизвестный герой",
       "description": "Скрывающийся в тени",
       "element": "wind"
     },
     {
-      "id": "1d120cd9-c949-4a58-94ae-b6810f3eef52",
-      "name": "alexG",
-      "description": "11",
-      "element": ""
+      "id": 3,
+      "name": "Морской герой",
+      "description": "Как аквамен, но не из DC",
+      "element": "water"
     },
     {
-      "id": "d7c564d8-5e45-4671-90a8-04ae581a7fc2",
-      "name": "alexG",
-      "description": "22",
-      "element": "water"
+      "id": "beae1604-848f-43c9-9ba5-f648702bd005",
+      "name": "alex",
+      "description": "Шиноби з лысття",
+      "element": "earth"
     }
   ],
   "filters": [

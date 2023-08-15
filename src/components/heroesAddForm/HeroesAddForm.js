@@ -1,6 +1,6 @@
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться (создание +, фильтрация -)
+// в общее состояние и отображаться в списке + фильтроваться (создание +, фильтрация +)
 // Уникальный идентификатор персонажа можно сгенерировать через uiid +
 // Усложненная задача:
 // Персонаж создается и в файле json при помощи метода POST +
@@ -8,12 +8,12 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров +
 
-import { useEffect, useState } from "react";
 import { useHttp } from "../../hooks/http.hook";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 
-import { heroCreated, filtersFetching, filtersFetched, filtersFetchingError } from "../../actions";
+import { heroCreated } from "../../actions";
 
 const HeroesAddForm = () => {
     // Состояния для контроля формы
@@ -25,16 +25,8 @@ const HeroesAddForm = () => {
     const dispatch = useDispatch();
     const { request } = useHttp();
 
-    useEffect(() => {
-        dispatch(filtersFetching());
-        request("http://localhost:3001/filters")
-            .then(data => dispatch(filtersFetched(data)))
-            .catch(() => dispatch(filtersFetchingError()))
-
-        // eslint-disable-next-line
-    }, []);
-
     const onSubmitHandler = (e) => {
+        e.preventDefault();
         // Генерация id через библиотеку
         const newHero = {
             id: uuidv4(),
@@ -105,7 +97,8 @@ const HeroesAddForm = () => {
 
             <div className="mb-3">
                 <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
-                <select 
+                <select
+                    required
                     className="form-select" 
                     id="element" 
                     name="element"
