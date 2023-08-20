@@ -1,7 +1,16 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import heroes from '../reducers/heroes';
 import filters from '../reducers/filters';
 
+// Store Middlewere (next = dispatch)
+const stringMiddlewere = ({ dispatch, getState }) => (next) => (action) => {
+    if (typeof action === 'string') {
+        return next({
+            type: action
+        });
+    }
+    return next(action);
+}
 
 //усиление стора с помощью Store enhancers, теперь в диспатч помно передать строку а спомощью этой функции мы проверим тип на строку и запишем как объект в диспатч
 const enhancer = (createStore) => (...args) => {
@@ -21,9 +30,7 @@ const enhancer = (createStore) => (...args) => {
 
 const store = createStore(
     combineReducers({ heroes, filters }),
-    compose(
-        enhancer,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    ));
+    compose(applyMiddleware(stringMiddlewere), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+);
 
 export default store;
