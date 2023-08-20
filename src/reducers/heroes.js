@@ -1,3 +1,5 @@
+//not used
+
 const initialState = {
     heroes: [],
     heroesLoadingStatus: 'idle'

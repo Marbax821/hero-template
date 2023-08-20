@@ -1,7 +1,8 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import ReduThunk from 'redux-thunk';
-import heroes from '../reducers/heroes';
-import filters from '../reducers/filters';
+import heroes from '../components/heroesList/heroesSlice';
+import filters from '../components/heroesFilters/filterSlice';
 
 // Store Middlewere (next = dispatch)
 const stringMiddlewere = ({ dispatch, getState }) => (next) => (action) => {
@@ -29,11 +30,18 @@ const enhancer = (createStore) => (...args) => {
     return store;
 }
 
-const store = createStore(
-    combineReducers({ heroes, filters }),
-    compose(applyMiddleware(ReduThunk, stringMiddlewere),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
+const store = configureStore({
+    reducer: { heroes, filters },
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(stringMiddlewere),
+    devTools: process.env.NODE_ENV !== 'production',
+})
+
+// old connetcion strore
+// const store = createStore(
+//     combineReducers({ heroes, filters }),
+//     compose(applyMiddleware(ReduThunk, stringMiddlewere),
+//         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//     )
+// );
 
 export default store;
