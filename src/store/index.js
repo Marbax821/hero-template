@@ -14,7 +14,7 @@ const stringMiddlewere = ({ dispatch, getState }) => (next) => (action) => {
     return next(action);
 }
 
-//усиление стора с помощью Store enhancers, теперь в диспатч помно передать строку а спомощью этой функции мы проверим тип на строку и запишем как объект в диспатч
+//усиление стора с помощью Store enhancers, теперь в диспатч можно передать строку а спомощью этой функции мы проверим тип на строку и запишем как объект в диспатч
 const enhancer = (createStore) => (...args) => {
     const store = createStore(...args);
 
